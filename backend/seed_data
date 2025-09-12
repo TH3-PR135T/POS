@@ -1,0 +1,20 @@
+# seed_data.py
+from main import SessionLocal, Sale
+
+db = SessionLocal()
+
+# Add some sample sales
+sales_data = [
+    {"product_name": "Burger", "quantity": 2, "total_price": 100.0, "tax_amount": 16.0},
+    {"product_name": "Pizza", "quantity": 1, "total_price": 80.0, "tax_amount": 12.8},
+    {"product_name": "Soda", "quantity": 3, "total_price": 45.0, "tax_amount": 7.2}
+]
+
+for sale in sales_data:
+    s = Sale(**sale)
+    db.add(s)
+
+db.commit()
+db.close()
+
+print("✅ Seed data inserted successfully")
